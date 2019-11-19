@@ -1,1 +1,15 @@
-/Classwork/01. Class/.vs*
+
+*.vs
+*Debug
+
+/Class_Work/01. Class/.vs*
+/Class_Work/01. Class/Debug*
+/Class_Work/02 /.vs*
+/Class_Work/02 /Debug*
+/Classwork/02. getters, setter, constructor/.vs*
+/Class_Work/02. getters, setter, constructor/Debug*
+
+
+=============================================
+/Home_Work/11.18.19/.vs*
+/Home_Work/11.18.19/Debug*
