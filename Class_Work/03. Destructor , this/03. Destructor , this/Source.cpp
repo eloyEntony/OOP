@@ -4,17 +4,16 @@
 
 using namespace std;
 
+
 int main()
 {
 	string name;
 	string surname;
 	string group;
 	const int size = 5;
-	int mark[size];
-	
+	int mark[size];	
 
-	Student student[size];	
-	
+	Student student[size];		
 
 	for (int i = 0; i < size; i++) {
 
@@ -37,7 +36,9 @@ int main()
 		student[i].Average_mark();
 	}
 
-	student[0].Show_info();
+	student->Sort(student, size);
+	
+	student->~Student;
 
 	system("pause");
 	return 0;

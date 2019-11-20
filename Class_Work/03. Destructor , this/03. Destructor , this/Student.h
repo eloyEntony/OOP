@@ -22,10 +22,10 @@ public:
 
 	void Show_info();
 
-	void Average_mark();
+	void Average_mark();	
+
+	void Sort(Student  student[], int size);
 
 	~Student();
-
-	void Sort();
 };
 
