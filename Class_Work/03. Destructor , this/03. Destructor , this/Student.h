@@ -24,7 +24,7 @@ public:
 
 	void Average_mark();	
 
-	void Sort(Student  student[], int size);
+	void Sort(Student student[], int size);
 
 	~Student();
 };
