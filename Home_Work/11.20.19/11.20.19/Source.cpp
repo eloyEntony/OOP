@@ -28,6 +28,7 @@ You will find that you need to document the product even more so that a large nu
 
 int main()
 {
+
 	bool exit = false;
 	int choise = 0;
 	int buy = 0;
