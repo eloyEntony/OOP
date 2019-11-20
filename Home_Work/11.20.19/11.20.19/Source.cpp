@@ -12,7 +12,19 @@ Purchase an additional box to preserve the reliability of the purchased item
 Provide access to :
 Buy potato products at a discount
 Display information about the current big discount
-You will find that you need to document the product even more so that a large number of discounts can be increased.*/
+You will find that you need to document the product even more so that a large number of discounts can be increased.
+
+Написати клас "Карточка на знижку", який містить наступну інформацію: 
+
+Номер карточки 
+Розмір знижки (знижка передбачається накопичуваною; на початковому етапі вона рівна 1%. За кожні 1000 грн. покупки, сума знижки збільшується на 1%.) 
+Приховане допоміжне поле для збереження вартості накупленого товару 
+Забезпечити можливість: 
+Купляти товар з використанням карточки на знижку 
+Виводити інформацію про поточну величину знижки 
+Виводити інформацію про те, на яку суму ще необхідно докупити товару, щоб величина знижки збільшилась. 
+
+*/
 
 int main()
 {
