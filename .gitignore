@@ -1,14 +1,15 @@
 *.vs
 *Debug
 
-/Class_Work/01. Class/.vs*
-/Class_Work/01. Class/Debug*
-/Class_Work/02. getters, setter, constructor/.vs*
-/Class_Work/02. getters, setter, constructor/Debug*
-/Class_Work/03. Destructor , this/.vs*
-/Class_Work/03. Destructor , this/Debug*
-
-
+/Class_Work/01. Class/.vs
+/Class_Work/01. Class/Debug
+/Class_Work/02. getters, setter, constructor/.vs
+/Class_Work/02. getters, setter, constructor/Debug
+/Class_Work/03. Destructor , this/.vs
+/Class_Work/03. Destructor , this/Debug
+/Class_Work/04. Task. Train/.vs
+/Class_Work/04. Task. Train/Debug
+/Class_Work/04. Task. Train/04. Task. Train/Debug
 
 
 =============================================
