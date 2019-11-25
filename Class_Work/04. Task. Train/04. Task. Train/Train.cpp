@@ -17,21 +17,22 @@ void Train::Set_name(string name_train)
 	this->name_train = name_train;
 }
 
-void Train::SetSize(int size_train)
+void Train::SetSize(int train_size)
 {
-	this->train_size = size_train;
+	this->train_size = train_size;
 }
 
-Train::Train(string name_train, int size_train)
+Train::Train(string name_train, int train_size)
 {	
+	cout << "CONSTRUCTOR" << endl;
 	this->name_train = name_train;
-	this->train_size = size_train;
+	this->train_size = train_size;
 	for (int i = 0; i < this->train_size; i++) {
 		this->car[i].Fillcar();
 	}
 }
 
-Train::Train(Train & other)
+Train::Train(Train &other)
 {
 	this->number_train = other.number_train;
 	this->name_train = other.name_train;
@@ -44,8 +45,7 @@ Train::Train(Train & other)
 }
 
 void Train::Show_info()
-{
-	Train_number();
+{	
 	cout << "\n------------------------------------------------------" << endl;
 	cout << " Train number: " << number_train << endl;
 	cout << " Train name: " << name_train << endl;
@@ -60,11 +60,12 @@ void Train::Show_info()
 	}
 }
 
-
 void Train::Train_number(){
-	this->number_train = rand() % 99 + 10;
-}
 
+	cout << " Enter number train: ";
+	cin >> this->number_train;
+	//this->number_train = rand() % 99 + 10;
+}
 
 void Train::Max_car()
 {
@@ -126,7 +127,10 @@ void Train::Show_all_info()
 
 
 
+
+
 Train::~Train()
 {
 	delete[] car;
+	cout << " DESTRUCTOR" << endl;
 }

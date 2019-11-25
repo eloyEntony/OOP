@@ -10,10 +10,14 @@ class Train
 	int number_train=0;
 	string name_train;
 	int train_size=0;	
+	   	 	
 
 	TrainCar *car = new TrainCar[train_size];
 
 public:
+
+	
+
 	Train();
 	Train(string name_train, int size_train);
 	Train(Train &other);
@@ -35,6 +39,8 @@ public:
 	void All_passenger();
 
 	void Show_all_info();
+
+
 
 	~Train();
 };

@@ -53,8 +53,6 @@ int main() {
 	int number_train=0;
 	string name_train;
 	int train_size;
-
-
 	int train_count = 0;
 
 	cout << "Enter trains count: ";
@@ -67,19 +65,23 @@ int main() {
 		cout << "\n\n Enter train name : ";
 		cin >> name_train;
 		train[i].Set_name(name_train);
-
+		
 		cout << "\n ==== Train size ====" << endl;
 		cout << " Enter size: ";
 		cin >> train_size;
 		train[i].SetSize(train_size);
-
-		train[i].Show_info();
+		train[i].Train_number();
+		
+		//train[i].Show_info();
 		cout << "-------------------------" << endl;
 
 	}
 
-
-
+	for (int i = 0; i < train_count; i++)
+	{
+		train[i].Show_info();
+	}
+	
 	/*Train mytrain;
 	
 			cout << "\n\n Enter train name : ";
@@ -111,7 +113,7 @@ int main() {
 			my2train.All_passenger();
 			cout << "-------------------------" << endl;*/
 		
-
+		
 
 	system ("pause");
 	return 0;

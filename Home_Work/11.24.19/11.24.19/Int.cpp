@@ -10,6 +10,11 @@ Int::Int(int a){
 	this->a = a;
 }
 
+Int::Int(Int & other)
+{
+	this->a = other.a;
+}
+
 int Int::Get_int(){
 	return this->a;
 }

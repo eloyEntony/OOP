@@ -8,6 +8,7 @@ class Int
 public:
 	Int();
 	Int(int a);
+	Int(Int &other);// copy metod
 	int Get_int();
 	void Set_int(int a);
 	void Show_info();
@@ -16,6 +17,7 @@ public:
 	int Mul(Int b);
 	int Div(Int b);
 	int Get_value();
+
 
 	~Int();
 };

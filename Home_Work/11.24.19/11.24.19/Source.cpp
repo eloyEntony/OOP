@@ -24,24 +24,34 @@ using namespace std;
 void Fill_digits(int &q, int &w, Int &a, Int &b);
 int main()
 {
-	Int a, b, res;
+	//Int a, b, res;
+	int a1 = 0;
 	
-	/*Int a(8), b(3), res;
+	Int a(8), b(3), res;
 	a.Show_info();
 	b.Show_info();
 
 	res=a.Sum(b);
-	cout <<" RES > " <<res.Get_value() << endl;
+	cout << " [+] RES > " << res.Get_value() << endl;
+
+	a.Set_int(8);
+	b.Set_int(3);
 	res = a.Sub(b);
-	cout << " RES > " << res.Get_value() << endl;
+	cout << " [-] RES > " << res.Get_value() << endl;
+
+	a.Set_int(8);
+	b.Set_int(3);
 	res = a.Div(b);
-	cout << " RES > " << res.Get_value() << endl;
+	cout << " [/] RES > " << res.Get_value() << endl;
+
+	a.Set_int(8);
+	b.Set_int(3);
 	res = a.Mul(b);
-	cout << "\n RES > " << res.Get_value() << endl;
-	*/
+	cout << " [*] RES > " << res.Get_value() << endl;
+	
 
 
-	bool exit = false;
+	/*bool exit = false;
 	int choise = 0;
 	int q = 0;
 	int w = 0;
@@ -75,7 +85,7 @@ int main()
 			Fill_digits(q, w, a, b);
 			res = a.Div(b);
 			cout << "\n RES > " << res.Get_value() << endl;
-			break;
+			break;		
 		case 0:
 			exit = true;
 			break;
@@ -83,7 +93,14 @@ int main()
 			break;
 		}
 
-	}
+	}*/
+
+	Int w(a);
+	cout << "\n\n Copy class ... "<<endl;	
+	cout << " Enter digit: ";
+	cin >> a1;
+	w.Set_int(a1);
+	w.Show_info();
 
 
 	system("pause");
