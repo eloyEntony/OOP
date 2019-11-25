@@ -22,9 +22,25 @@ void Train::SetSize(int size_train)
 	this->train_size = size_train;
 }
 
-Train::Train( string name_train)
+Train::Train(string name_train, int size_train)
 {	
 	this->name_train = name_train;
+	this->train_size = size_train;
+	for (int i = 0; i < this->train_size; i++) {
+		this->car[i].Fillcar();
+	}
+}
+
+Train::Train(Train & other)
+{
+	this->number_train = other.number_train;
+	this->name_train = other.name_train;
+	this->train_size = other.train_size;
+
+	for (int i = 0; i < other.train_size; i++) {
+		this->car[i] = other.car[i];
+	}
+
 }
 
 void Train::Show_info()
@@ -36,7 +52,7 @@ void Train::Show_info()
 	cout << " Tain size (number train-car): " << train_size << endl;
 	cout << " Train-car: " << endl;
 
-	for (int i = 0; i < train_size; i++) {		
+	for (int i = 0; i < this->train_size; i++) {
 
 		cout<<"\n [ "<<i<<" ] "<<"Car"<<endl;
 		car[i].Show_info();
@@ -46,7 +62,7 @@ void Train::Show_info()
 
 
 void Train::Train_number(){
-	number_train = rand() % 99 + 10;
+	this->number_train = rand() % 99 + 10;
 }
 
 
@@ -55,7 +71,7 @@ void Train::Max_car()
 	int max = 0;
 	int tmp=0;
 
-	for (int i = 0; i < train_size; i++)
+	for (int i = 0; i < this->train_size; i++)
 	{
 		if (car[i].Get_passenger() > max)
 		{
@@ -73,7 +89,7 @@ void Train::Min_car()
 	int min = car[0].Get_passenger();
 	int tmp=0;
 
-	for (int i = 0; i < train_size; i++)
+	for (int i = 0; i < this->train_size; i++)
 	{
 		if (car[i].Get_passenger() < min)
 		{
@@ -90,7 +106,7 @@ void Train::All_passenger()
 {
 	int suma = 0;
 
-	for (int i = 0; i < train_size; i++)
+	for (int i = 0; i < this->train_size; i++)
 	{
 		suma += car[i].Get_passenger();
 	}
@@ -102,7 +118,7 @@ void Train::Show_all_info()
 {
 	cout << "------------------------------------------------" << endl;
 	All_passenger();
-	cout << " All train-car : " << train_size << endl;
+	cout << " All train-car : " << this->train_size << endl;
 	Max_car();
 	Min_car();
 }
@@ -112,4 +128,5 @@ void Train::Show_all_info()
 
 Train::~Train()
 {
+	delete[] car;
 }

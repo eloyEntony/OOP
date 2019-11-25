@@ -41,6 +41,12 @@ int TrainCar::Get_passenger()
 	return passenger;
 }
 
+void TrainCar::Fillcar()
+{
+	Add_passenger();
+	Type_car();
+}
+
 
 int TrainCar::Get_type()
 {

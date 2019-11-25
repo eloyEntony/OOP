@@ -54,54 +54,65 @@ int main() {
 	string name_train;
 	int train_size;
 
-	bool exit = false;
-	int choise = 0;
-	Train mytrain;
 
-	while (!exit) {
-		cout << "\n\n==========================Train Station========================== " << endl;
-		cout << " [1] Creator train\n [2] Info by train and train-car\n [3] Max train-car\n [4] Min train-car\n [5] All passenger\n [6] All info by train\n [0] Exit\n" << endl;
-		cout << " Enter your choise: ";
-		cin >> choise;
+	int train_count = 0;
 
-		switch (choise)
-		{
-		case 1:
-			cout << "\n\n Enter train name : ";
-			cin >> name_train;
-			mytrain.Set_name(name_train);
+	cout << "Enter trains count: ";
+	cin >> train_count;
 
-			cout << "\n\n ==== Train size ====" << endl;
-			cout << " Enter size: ";
-			cin >> train_size;
-			mytrain.SetSize(train_size);
-			break;
-		case 2:
-			mytrain.Show_info();
-			break;
-		case 3:
-			mytrain.Max_car();
-			break;
-		case 4:
-			mytrain.Min_car();
-			break;
-		case 5:
-			mytrain.All_passenger();
-			break;
-		case 6:
-			mytrain.Show_all_info();
-			break;
-		case 0:
-			exit = true;
-			break;
-		default:
-			break;
-		}
+	Train *train = new Train[train_count];
+
+	for (int i = 0; i < train_count; i++)
+	{
+		cout << "\n\n Enter train name : ";
+		cin >> name_train;
+		train[i].Set_name(name_train);
+
+		cout << "\n ==== Train size ====" << endl;
+		cout << " Enter size: ";
+		cin >> train_size;
+		train[i].SetSize(train_size);
+
+		train[i].Show_info();
+		cout << "-------------------------" << endl;
 
 	}
 
 
 
-	//system ("pause");
+	/*Train mytrain;
+	
+			cout << "\n\n Enter train name : ";
+			cin >> name_train;
+			mytrain.Set_name(name_train);
+
+			cout << "\n ==== Train size ====" << endl;
+			cout << " Enter size: ";
+			cin >> train_size;
+			mytrain.SetSize(train_size);
+			
+			mytrain.Show_info();			
+			cout << "-------------------------" << endl;
+			mytrain.Max_car();	
+			mytrain.Min_car();		
+			mytrain.All_passenger();		
+			//mytrain.Show_all_info();
+			
+
+			Train my2train(mytrain);
+			cout << "\n\n Enter train [2] name : ";
+			cin >> name_train;
+			my2train.Set_name(name_train);			
+
+			my2train.Show_info();
+			cout << "-------------------------" << endl;
+			my2train.Max_car();
+			my2train.Min_car();
+			my2train.All_passenger();
+			cout << "-------------------------" << endl;*/
+		
+
+
+	system ("pause");
 	return 0;
 }

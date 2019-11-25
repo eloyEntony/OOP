@@ -26,7 +26,7 @@ public:
 
 	int Get_passenger();
 
-	
+	void Fillcar();
 
 	~TrainCar();
 };

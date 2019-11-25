@@ -15,7 +15,8 @@ class Train
 
 public:
 	Train();
-	Train(string name_train);
+	Train(string name_train, int size_train);
+	Train(Train &other);
 
 	int GetSize();
 
