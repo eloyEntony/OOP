@@ -44,41 +44,39 @@ using namespace std;
 									загальна кількість вагонів.
 									номер вагону в якому їхала найменша кількість пасажирів
 									номер вагону в якому їхала найбільша кількість пасажирів.*/
+
+int TrainCar::count = 0;
+
 int main() {
 
 	srand(unsigned(time(NULL)));
 
-	int number_train=0;
+	int number_train;
 	string name_train;
 	int train_size;
-	int train_count = 0;
+	int train_count;
 
 	cout << "Enter trains count: ";
 	cin >> train_count;
 
 	Train *train = new Train[train_count];
 
-	for (int i = 0; i < train_count; i++)
-	{
+	for (int i = 0; i < train_count; i++)	{
 		cout << "\n\n Enter train name : ";
-		cin >> name_train;
-		train[i].Set_name(name_train);
-		
+		cin >> name_train;		
 		cout << "\n ==== Train size ====" << endl;
 		cout << " Enter size: ";
 		cin >> train_size;
-		train[i].SetSize(train_size);
-		train[i].Train_number();
+		cout << " Enter number train: ";
+		cin >> number_train;
+		train[i] = Train(name_train, train_size, number_train);
 		
-		//train[i].Show_info();
 		cout << "-------------------------" << endl;
-
 	}
 
-	for (int i = 0; i < train_count; i++)
-	{
+	for (int i = 0; i < train_count; i++)	{
 		train[i].Show_info();
-	}
+	}	
 	
 	/*Train mytrain;
 	
@@ -111,7 +109,8 @@ int main() {
 			my2train.All_passenger();
 			cout << "-------------------------" << endl;*/
 		
-		
+	train = nullptr;
+	delete[] train;
 
 	system ("pause");
 	return 0;
