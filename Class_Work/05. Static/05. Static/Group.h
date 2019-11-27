@@ -8,10 +8,10 @@ using namespace std;
 class Group
 {
 	static string name;
-	int course;
-	string specialty;
+	static int course;
+	static string specialty;
 	int size = 0;
-
+	
 	Student *man;
 
 public:
@@ -19,10 +19,11 @@ public:
 	Group(int size, string name_group, int course, string specialty);
 	void Show_croup();
 	void Creat_croup(int size, string name_group, int course, string specialty);
-	void Set_size(int size);
-	void Set_name(string name);
-
+	void Set_size(int size);	
+	static void ReCourse(Group &group, int course);
+	static void ReSpecialty(Group &group, string specialty);
 	static void Rename(Group &group, string name);
+	void Change_student(int id, string name, string surname);
 	~Group();
 };
 
