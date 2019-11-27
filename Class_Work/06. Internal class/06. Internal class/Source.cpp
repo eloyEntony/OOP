@@ -12,43 +12,29 @@ public:
 		this->route = route;
 		this->distance = distance;
 		this->size = size;
+		this->counter++;
+		this->trainID = this->counter;
 		this->car = new Car[size];
 
-		for (int i = 0; i < size; i++)
-		{
+		for (int i = 0; i < size; i++)		{
 			cout << "\n [ " << i+1 << " ]" << endl;
 			this->car[i].FillCar();
 		}
 		//cout << "Overload train constructor." << endl;
 	}
-
-	void Fill_train() {
-
-		cout << " =========== Train =============" << endl;
-		cout << " Route : ";
-		cin >> this->route;
-		cout << " Distanse : ";
-		cin >> this->distance;
-		cout << " Size : ";
-		cin >> this->size;
-		
-		Train( route,  distance,  size);
-
-	}
-
 	void ShowTrain() {
-
-		cout << "\n-----------------------------------\n Route: " << this->route << "\n Distance: " << this->distance << endl;
-		cout << "\n ==Car==" << endl;
+		cout ;
+		cout << "\n--------------"<< "[" << this->trainID << "]"<<"---------------------\n Route: " << this->route << "\n Distance: " << this->distance << endl;
+		cout << "\n =====Car=====" << endl;
 		for (int i = 0; i < size; i++)
 		{
-			cout << " [" << i + 1 << "] ";
+			cout << "\t[" << i + 1 << "] ";
 			car[i].ShowCar();
 		}
 	}
 	~Train() {
-		/*car = nullptr;
-		delete[] car;*/
+		car = nullptr;
+		delete[] car;
 	}
 	
 private:
@@ -58,35 +44,35 @@ private:
 		string type;
 		int passengers;
 	public:
-		Car() {
+		Car(){
 		// cout << "Default car constructor. " << endl;
 		}
-		Car(string type, int passengers) {
+		Car(string type, int passengers){
 			this->type = type;
 			this->passengers = passengers;
 			//cout << "Overload car constructor. " << endl;
 		}
-		void ShowCar() {
-			cout <<  "\n Type: " << this->type << "\n Passengers: " << this->passengers << endl;
+		void ShowCar(){
+			cout <<  "   Type: " << this->type << "\t Passengers: " << this->passengers << endl;
 		}
-		void FillCar()
-		{
+		void FillCar(){
 			cout << " Enter type: ";
 			cin >> this->type;
 			cout << " Enter passenger: ";
-			cin >> this->passengers;
-			
+			cin >> this->passengers;			
 		}
-
 	};
 
 
 	string route;
 	int distance;
 	int size;
+	unsigned int trainID;
+	static int counter;
 	Car *car;
 };
 
+int Train::counter = 0;
 
 int main() {
 
@@ -106,35 +92,47 @@ int main() {
 		trains[i].ShowTrain();
 	}*/
 
-	/*string route;
+	string route;
 	int size;
-	int distanse;
-	string type_car;*/
-	
+	int distance;
+	string type_car;
+	int train_count;
 
-	int train_count;	
 
-	cout << " Enter train count: " << endl;
+
+	cout << "\n Enter train count: ";
 	cin >> train_count;
 	Train *train = new Train[train_count];
 
-	for (int i = 0; i < train_count; i++)
-	{
-		train[i].Fill_train();
+	for (int i = 0; i < train_count; i++){
+		cout << "\n =========== Train =============" << endl;
+		cout << " Route : ";
+		cin >> route;
+		cout << " Distanse : ";
+		cin >> distance;
+		cout << " Size : ";
+		cin >> size;
+
+		train[i] = Train(route, distance, size);
 	}
-	
-	for (int i = 0; i < train_count; i++)
-	{
+
+
+	for (int i = 0; i < train_count; i++){
 		train[i].ShowTrain();
 	}
+	
+	
 	
 
 	/*Train mytrain(route, distanse, size);
 	   
 	mytrain.ShowTrain();*/
 
-	
 
+	train = nullptr;
+	delete[] train;
+	
+	
 	system("pause");
 	return 0;
 }
