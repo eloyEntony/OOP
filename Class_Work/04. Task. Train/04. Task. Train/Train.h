@@ -7,10 +7,12 @@ using namespace std;
 
 class Train
 {
+	int trainID;
 	int number_train = 0;
 	string name_train;
 	int train_size=0;	
 	int suma;
+	static int count;
 	TrainCar *car;
 
 public:	

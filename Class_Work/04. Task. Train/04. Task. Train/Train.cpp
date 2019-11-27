@@ -24,6 +24,8 @@ Train::Train(string name_train, int train_size, int number_train)
 	this->name_train = name_train;
 	this->train_size = train_size;
 	this->number_train = number_train;
+	this->count++;
+	this->trainID = count;
 	this->car = new TrainCar[train_size];
 	for (int i = 0; i < this->train_size; i++) {		
 		this->car[i].Fillcar();
@@ -42,12 +44,13 @@ Train::Train(Train &other){
 }
 
 void Train::Show_info(){	
-	cout << "\n------------------------------------------------------" << endl;
+	cout << "\n------------------------ ID [ "<<trainID<<" ]------------------------------" << endl;
 	cout << " Train number: " << number_train << endl;
 	cout << " Train name: " << name_train << endl;
 	cout << " Tain size (number train-car): " << train_size << endl;
 	cout << " Train-car: " << endl;
-	for (int i = 0; i < this->train_size; i++) {		
+	for (int i = 0; i < this->train_size; i++) {
+		cout << "[" << i+1 << "]" << endl;
 		car[i].Show_info();	
 	}
 }

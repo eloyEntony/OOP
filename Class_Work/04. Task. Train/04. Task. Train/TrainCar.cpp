@@ -11,7 +11,6 @@ TrainCar::TrainCar(int type, short passenger){
 
 
 void TrainCar::Show_info(){	
-	cout << "[" << this->carID << "]"<<endl;
 	cout << " Type train-car: "<< type << endl;
 	cout << " Passengers: " << passenger << endl;
 }
@@ -22,9 +21,7 @@ int TrainCar::Get_passenger(){
 
 void TrainCar::Fillcar(){	
 	this->passenger = rand() % 99 + 1;
-	this->type = rand() % 3 + 1;
-	count++;
-	this->carID = this->count;
+	this->type = rand() % 3 + 1;	
 }
 
 int TrainCar::Get_type(){
