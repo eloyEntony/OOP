@@ -6,6 +6,8 @@
 
 using namespace std;
 
+string Group::name;
+
 int main()
 {
 	string name_group;
@@ -23,14 +25,13 @@ int main()
 
 	cout << " Enter group size: ";
 	cin >> size;
-
-	mygroup.Group(size, name_group, course, specialty);
-
-	
-	
-
+	mygroup.Set_size(size);
+	mygroup.Creat_croup(size, name_group, course, specialty);
 	mygroup.Show_croup();
 
+	Group::Rename(mygroup, "34C9-1PR");
+
+	mygroup.Show_croup();
 	system("pause");
 	return 0;
 }

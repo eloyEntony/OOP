@@ -27,6 +27,9 @@ Train::Train(string name_train, int train_size)
 	cout << "CONSTRUCTOR" << endl;
 	this->name_train = name_train;
 	this->train_size = train_size;
+
+	//this->car = new TrainCar[train_size];
+
 	for (int i = 0; i < this->train_size; i++) {
 		this->car[i].Fillcar();
 	}

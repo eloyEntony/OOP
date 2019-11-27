@@ -11,7 +11,7 @@ class Train
 	string name_train;
 	int train_size=0;	
 	   	 	
-
+	//TrainCar *car;
 	TrainCar *car = new TrainCar[train_size];
 
 public:
