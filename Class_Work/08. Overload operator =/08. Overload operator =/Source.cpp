@@ -5,18 +5,17 @@ using namespace std;
 
 int main() {
 
-	char str[80];
-
-	cout << " Enter you str: ";
-	cin >> str;
-
-	XString row1(str);
+	
+	string s;
+	XString row1;
 	XString row2;
 
-	row1.Show_string();
+	row1.Create_row();
+	row2.Create_row();
 
-	row2.Show_string();
-
+	row1.operator*=(row2);
+	
+	cout << "\n\n"; 
 	system("pause");
 	return 0;
 }

@@ -1,18 +1,24 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include <stdio.h>
 using namespace std;
 
 class XString
 {
 	char str[80];
-	string my_row;
 	
 public:
 	XString();
-	XString(char str[]);	
 	XString(XString &other);
-	void Show_string();
+	void Create_row();
+	void Show_row();
+
+	XString operator*=(const XString &other);
+	XString operator/=(const XString &other);
+	XString operator+=(const XString &other);
+
+
 
 	~XString();
 };
