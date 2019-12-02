@@ -49,7 +49,7 @@ int main()
 			cout << "\n\n";
 
 			Fish::Live();			
-			Sleep(500);			
+			Sleep(1000);			
 		}
 		
 
