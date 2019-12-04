@@ -14,7 +14,11 @@ int main() {
 	row2.Create_row();
 
 	row1.operator*=(row2);
-	
+
+	row1.operator+=(row2);
+
+	row1.operator/=(row2);
+
 	cout << "\n\n"; 
 	system("pause");
 	return 0;
