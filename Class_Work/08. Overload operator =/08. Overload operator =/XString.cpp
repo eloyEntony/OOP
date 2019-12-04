@@ -22,11 +22,16 @@ void XString::Show_row()
 	cout << " You row : " << this->str << endl;	
 }
 
+void XString::Show_new_string(int size)
+{
+	for (int i = 0; i < size; i++) {
+		cout << new_string[i];
+	}
+}
+
 XString XString::operator*=(const XString & other)
 {
-	int n = 0;
-	char new_string[80] = {};
-
+	n = 0;
 	for (int i = 0; i < strlen(str); i++){
 		for (int j = 0; j < strlen(other.str); j++)	{
 			if (this->str[i] == other.str[j])	{
@@ -35,55 +40,37 @@ XString XString::operator*=(const XString & other)
 			}
 		}
 	}
-	cout << "String of common characters  >> ";
-	for (int i = 0; i < strlen(new_string); i++)	{
-		cout<< new_string[i];
-	}
-	cout << endl;
-
+	cout << "\n [*] ---> ";	
+	Show_new_string(n);
 	return *this;
 }
 
 XString XString::operator/=(const XString & other)
 {
-	char new_string[80] = {};
-	int n = 0;
-
-	for (int i = 0; i < strlen(str); i++)
-	{
-		int m = 0;
-		for (int j = 0; j < strlen(other.str); j++)
-		{
-			if (this->str[i] != other.str[j])
-			{
+	n = 0;
+	for (int i = 0; i < strlen(str); i++)	{
+		m = 0;
+		for (int j = 0; j < strlen(other.str); j++)	{
+			if (this->str[i] != other.str[j])	{
 				m++;
-			}
-				
+			}				
 		}
-		if (m == strlen(other.str))
-		{
+		if (m == strlen(other.str))	{
 			new_string[n] = str[i];
 			n++;
 		}
 	}
-
-	cout << "\n\n///";
-
-	for (int i = 0; i < n; i++)
-	{
-		cout << new_string[i];
-	}
-
+	cout << "\n\n [/] ---> ";
+	Show_new_string(n);
 	return *this;
 }
 
 XString XString::operator+=(const XString & other)
 {
-	int n = 0;
-	char new_string[80] = {};
+	n = 0;	
+	m = 0;
 
-	for (int i = 0; i < strlen(str)+strlen(other.str); i++)
-	{
+	for (int i = 0; i < strlen(str)+strlen(other.str); i++)	{
 		if (i < strlen(str))	{
 			new_string[i] = this->str[i];
 		}
@@ -91,18 +78,12 @@ XString XString::operator+=(const XString & other)
 			new_string[i] = other.str[n];
 			n++;
 		}
+		m++;
 	}
-	cout << " +++ ";
-	for (int i = 0; i < strlen(str) + strlen(other.str); i++)	{
-		cout << new_string[i];
-	}
-
+	cout << "\n\n [+] ---> ";	
+	Show_new_string(m);
 	return *this;
 }
-
-
-
-
 
 XString::~XString()
 {
