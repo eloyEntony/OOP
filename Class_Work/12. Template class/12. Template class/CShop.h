@@ -1,25 +1,20 @@
 #pragma once
-#include<iostream>
-#include<string>
-#include"Book.h"
-
+#include <iostream>
+#include <string>
 using namespace std;
+//#include"Book.h"
 
-template<typename  T>
+template <typename T>
 class CShop
 {
-	int SIZE;
-	T Array[SIZE];
-
-	T *type;
-
-
-	Book book[2];
+	//friend Book;
+	int size;
+	T *arr;
 
 public:
-	 CShop();
-	 CShop(int size);
-	 void Show();
-	 ~CShop();
+	CShop();
+	CShop(int size);
+	void Show_info();
+	~CShop();
 };
 

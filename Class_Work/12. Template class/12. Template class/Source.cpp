@@ -1,11 +1,16 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
+#include"CShop.h"
 #include"Book.h"
 using namespace std;
 
 int main() {
 
-	Book book(2);
+
+	CShop <Book> shop(1);
+//	shop.Show_info();
+	
+
 
 	system("pause");
 	return 0;

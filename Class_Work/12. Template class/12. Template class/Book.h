@@ -1,22 +1,19 @@
 #pragma once
-#include<iostream>
-#include<string>
-
+#include <iostream>
+#include <string>
 using namespace std;
 
 class Book
 {
+
 	string name;
 	string publishing;
 	string avtor;
 	int price;
-	bool new_book = true;
-
-	
+	bool new_book;
 
 public:
-	Book();
-	Book(int size);
+	Book();	
 	void Show_book();
 	~Book();
 };

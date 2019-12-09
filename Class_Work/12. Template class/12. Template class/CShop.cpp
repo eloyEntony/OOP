@@ -1,34 +1,32 @@
 #include "CShop.h"
 
 
-
-CShop::CShop()
+template <typename T>
+CShop<T>::CShop()
 {
 }
 
 template<typename T>
 CShop<T>::CShop(int size)
 {
-	for (int i = 0; i < 2; i++)
+	this->size = size;
+	this->arr = new T[this->size];
+	for (int i = 0; i < this->size; i++)
 	{
-		book[i].name = "Azbyka";
-		book[i].avtor = "I am";
-		book[i].publishing = "I am";
-		book[i].price = 3;
-		book[i].new_book = 1;
+		this->arr[i];
 	}
 }
 
 template<typename T>
-void CShop<T>::Show()
+void CShop<T>::Show_info()
 {
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < this->size; i++)
 	{
-		book[i].Show_book();
+		this->arr[i].ShowInfo();
 	}
+
+	cout << endl;
 }
 
-
-CShop::~CShop()
-{
-}
+template <typename T>
+CShop<T>::~CShop(){}
