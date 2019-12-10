@@ -3,19 +3,18 @@
 #include <string>
 using namespace std;
 
-class Book
+class Audio
 {
-
 	string name;
-	string publishing;
 	string avtor;
+	int music_count;
 	int price;
-	//bool new_book;
+	//bool new_audio;
 
 public:
-	Book();	
+	Audio();	
 	void Show_info();
 	int Get_price();
-	~Book();
+	~Audio();
 };
 

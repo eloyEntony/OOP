@@ -2,20 +2,16 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
-class Book
+class Megazine
 {
-
 	string name;
-	string publishing;
-	string avtor;
 	int price;
-	//bool new_book;
+	//bool new_megazine;
 
 public:
-	Book();	
+	Megazine();
 	void Show_info();
 	int Get_price();
-	~Book();
+	~Megazine();
 };
 
