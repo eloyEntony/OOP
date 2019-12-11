@@ -72,12 +72,36 @@ int main()
 	c.Show_info();
 	cout << "\n\n";
 
+	Var c1("12Anton");
+
 	Var d("50");
 	d.Show_info();
 	cout << "\n\n";
 
+	//a + c1;
+	/*a += a1;
+	cout << endl;
 
-	a + a1;
+	a -= a1;
+	cout << endl;
+
+	a *= a1;
+	cout << endl;
+
+	a /= a1;
+	cout << endl;
+
+	if (a == a1)
+		cout << " Equal" << endl;
+	else
+		cout << " Not Equal" << endl;*/
+	
+
+	/*c += c1;
+	cout << endl;
+	c.Show_info();*/
+
+	/*a + a1;
 	cout << endl;
 	a + b;
 	cout << endl;
@@ -93,7 +117,7 @@ int main()
 	cout << endl;
 	c + d;
 	cout << endl;
-	d + c;
+	d + c;*/
 
 	cout << "\n\n";
 	
