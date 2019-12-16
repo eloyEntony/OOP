@@ -40,7 +40,7 @@ public:
 		if (this->head == nullptr)
 		{
 			this->head = new Conteiner<T>(data);
-			this->size++;
+			
 		}
 		else
 		{
@@ -49,11 +49,10 @@ public:
 			{
 				current = current->next_conteiner;
 			}
-			current->next_conteiner = new Conteiner<T>(data);
-
-			this->size++;
+			current->next_conteiner = new Conteiner<T>(data);			
 		}
-		
+
+		this->size++;
 	}
 
 	T& operator[](int i) {
@@ -61,7 +60,7 @@ public:
 		int count = 0;
 		Conteiner<T> *current = this->head;
 		
-		while (current == nullptr) {
+		while (current != nullptr) {
 
 			if (count == i) {
 				return current->data;
