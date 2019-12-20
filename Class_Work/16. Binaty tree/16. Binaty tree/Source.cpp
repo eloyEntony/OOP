@@ -1,5 +1,6 @@
 ﻿#include <iostream>
-
+#include<fstream>
+#include<string>
 using namespace std;
 
 //struct Node {
@@ -157,24 +158,104 @@ bool Search(Bus* root, int number) {
 	else									{ return Search(root->right, number); }
 }
 
+void Show_info(Bus *&root, int num)
+{
+	
+	if (root != NULL)              
+	{
+		if(num == root->bus_number ) {
+
+			cout << "\n ~~~ Bus number   : " << root->bus_number << endl;
+			cout << " ~~~ Driver       : " << root->driver << endl;
+			cout << " ~~~ Route number : " << root->route_number << endl;
+			cout << " ~~~ Seat plase   : " << root->seat_plase_in_bus << endl;
+		}
+		else if(num >= root->bus_number )
+		Show_info(root->right, num);
+
+		else if(num <= root->bus_number )
+		Show_info(root->left, num);  	             
+	}
+}
+
+void Write_to_file(Bus *root)
+{
+	string path = "data.txt";
+	ofstream writeFile;
+	writeFile.open(path, ios::app);
+
+	if (root != NULL) {
+
+		if (!writeFile.is_open())
+		{
+			cout << " [!] Can't save file!" << endl;
+		}
+		else {
+
+			writeFile << root->bus_number << endl;
+			writeFile << root->driver << endl;
+			writeFile << root->route_number << endl;
+			writeFile << root->seat_plase_in_bus << endl;
+			writeFile << "------------------------" << endl;
+		}
+		writeFile.close();
+		cout << endl;	
+
+		Write_to_file(root->left);
+		Write_to_file(root->right);
+	}
+	
+}
 
 int main() {
 	int number;
+	int choise;
+	bool exit = false;
 
 	Bus *root = NULL;
 	root = Insert(root, 50, "Bob", 30, 10);
 	root = Insert(root, 20, "Bill", 15, 15);
-	
 
-	cout << "Enter number for search : " << endl;
-	cin >> number;
-	if (Search(root, number) == true) {
-		cout << "Number: " << number << " Found" << endl;
-	}
-	else {
-		cout << number << " Not found" << endl;
-	}
+	while (!exit)
+	{
+		cout << "\n------------------------ Bus Station ------------------------" << endl;
+		cout << " [1] Search bus " << endl;
+		cout << " [2] Show bus " << endl;
+		cout << " [3] Write to file " << endl;
+		cout << " [0] Exit" << endl;
 
+		cout << "\n Enter your choise : ";
+		cin >> choise;
+
+		switch (choise)
+		{
+		case 1:
+			cout << "\n Enter number for search : ";
+			cin >> number;
+			if (Search(root, number) == true) {
+				cout << "\n ~~~ Number: " << number << " Found" << endl;
+			}
+			else {
+				cout << number << "\n ~~~ Not found" << endl;
+			}
+			break;
+		case 2:
+			cout << "\n Enter number to show : ";
+			cin >> number;
+			Show_info(root, number);
+			cout << endl;
+			break;
+		case 3:
+			Write_to_file(root);
+			cout << " ~~~ Data save! " << endl;
+			break;
+		case 0:
+			exit = true;
+			break;
+		default:
+			break;
+		}
+	}
 
 
 	system("pause");
