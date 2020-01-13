@@ -52,7 +52,7 @@ public:
 		this->ammunition = ammunition;
 		this->count_ammunition = count;
 	}
-	void Shot(string ammunition)	{
+	virtual void Shot(string ammunition)	{
 		if (this->count_ammunition > 0) {
 			this->count_ammunition--;
 			cout << "\t\t Shot " << ammunition << " Left : " << this->count_ammunition << endl;
