@@ -59,17 +59,18 @@ public:
 
 		if (A > other.evade_attacks && this->die == false && other.die == false) {
 			other.hp -= this->attack;
-			cout << setw(10) << this->type << setw(15) << " attack " << setw(15) << other.type << endl;
+			cout << setw(10) << this->type << setw(15) << " attack -->" << setw(15) << other.type << endl;
 		}
 		else if (A < other.evade_attacks && this->die == false && other.die == false)
-			cout << setw(10) << this->type << setw(15) << " missed " << setw(15) << other.type << endl;
+			cout << setw(10) << this->type << setw(15) << " |missed| " << setw(15) << other.type << endl;
 
-		else if (other.die == true)
+		else if (this->die == false && other.die == true)
 			cout << setw(10) << this->type << setw(15) << " DIE --> " << setw(15) << other.type << endl;
 
-		else if (this->die == true)
+		else if (this->die == true && other.die == false)
 			cout << setw(10) << this->type << setw(15) << " <-- DIE " << setw(15) << other.type << endl;
-
+		else 
+			cout << setw(10) << this->type << setw(15) << "         " << setw(15) << other.type << endl;
 	}
 
 	void Show_info() {
@@ -119,14 +120,16 @@ public:
 	Unit *RED_team = new Unit[size];
 	Unit *BLUE_team = new Unit[size];
 
-	void Death_unit(Unit *team, int size){
+
+	bool Death_unit(Unit *team, int size){
+		int count=0;
 		for (int i = 0; i < size; i++) {
 			if (team[i].die == true) {
-				cout << "Yes" << endl;
-			}
-			else
-				cout << "No" << endl;
+				count++;
+			}		
 		}
+		if (count == 3) return true;
+		else return false;
 	}
 
 	void Show_team(Unit *team, int size) {
@@ -150,16 +153,12 @@ void Fill_team(Unit *team, const int size){
 void Attack(Unit *team1, Unit *team2, int size) {
 	for (int i = 0; i < size; i++) {
 
-		if(team1[i].type==team2[0].type && team2[0].die == false){		
-			team1[i].Attack(team2[0]);
-		}	
-		else if (team1[i].type == team2[1].type && team2[1].die == false){
-			team1[i].Attack(team2[1]);
-		}
-		else if (team1[i].type == team2[2].type && team2[2].die == false){
-			team1[i].Attack(team2[2]);
-		}
-
+		if      (team1[i].type == team2[0].type && team2[0].die == false){		team1[i].Attack(team2[0]);		}	
+		else if (team1[i].type == team2[1].type && team2[1].die == false){		team1[i].Attack(team2[1]);		}
+		else if (team1[i].type == team2[2].type && team2[2].die == false){		team1[i].Attack(team2[2]);		}
+		else if (team1[i].type != team2[0].type && team2[0].die == false){		team1[i].Attack(team2[0]);		}
+		else if (team1[i].type != team2[1].type && team2[1].die == false){		team1[i].Attack(team2[1]);		}
+		else if (team1[i].type != team2[2].type && team2[2].die == false){		team1[i].Attack(team2[2]);		}
 
 		if (team2[i].hp <= 0) {
 			team2[i].hp = 0;
@@ -177,20 +176,33 @@ public:
 	}
 
 	void WAR() {
-		cout << "-------------------------------" << endl;
+		cout << "\n-------------------------------------------" << endl;
+		cout << " RED                                  BLUE " << endl;
+		cout << "-------------------------------------------" << endl;
 		Attack(RED_team, BLUE_team, size);
-		cout << "-------------------------------" << endl;
+		cout << "\n-------------------------------------------" << endl;
+		cout << " BLUE                                  RED " << endl;
+		cout << "-------------------------------------------" << endl;
 		Attack(BLUE_team, RED_team, size);
 	}
 
 	void Show_info() {
-		cout << "------------------------------------" << endl;
-		Show_team(RED_team, size);
-		cout << "------------------------------------" << endl;
+		cout << "\n-RED-------------------------------------" << endl;
+		Show_team(RED_team, size);		
+		cout << "\n-BLUE------------------------------------" << endl;
 		Show_team(BLUE_team, size);
-		cout << "------------------------------------" << endl;
+		cout << "------------------------------------------" << endl;
 	}
 
+	int Exit() {		
+		if (Death_unit(RED_team, size) == true) {
+			return 2;
+		}
+		if (Death_unit(BLUE_team, size) == true) {
+			return 1;
+		}
+		else return 0;
+	}	
 };
 
 
@@ -199,18 +211,33 @@ public:
 int main()
 {
 	srand(unsigned(time(NULL)));
-
+	bool game_over = false;
+	int win_team = 0;
 	Game game;
-
 	game.Create_team();
-
-	for (int i = 0; i < 5; i++) {
-		game.WAR();
-		system("pause");
-	}
-	
-
 	game.Show_info();
+
+	while (!game_over) {
+	
+		cout << "\n\n________________________________________________________________________________________________________\n\n" << endl;
+		game.WAR();
+		game.Show_info();
+		win_team = game.Exit();
+		
+		if (win_team == 1){
+			cout << "\t\t\t\t\t\t\t  !!! WIN RED TEAM !!! " << endl;
+			system("color 47");
+			game_over = true;
+		}
+		else if (win_team == 2){
+			cout << "\t\t\t\t\t\t\t  !!! WIN BLUE TEAM !!! " << endl;
+			system("color 17");
+			game_over = true;
+		}
+		else cout << "\t\t\t\t\t\t\t Battle continue ... " << endl;		
+
+		system("pause");
+	}	
 
 	system("pause");
 	return 0;
