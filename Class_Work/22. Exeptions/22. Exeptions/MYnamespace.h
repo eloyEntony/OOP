@@ -16,19 +16,20 @@ namespace MySpace {
 
 		Documante() {};
 		
-		void Fill() {	
-			cin.ignore();
-			cout << "Enter your name : ";			
+		void Fill() {				
+			cout << " --> Enter your name      : ";	
+			//cin.ignore();
 			getline(cin, name);
-			cout << " Enter your surnaem : ";
+			cout << " --> Enter your surnaem   : ";
 			getline(cin, surname);
-			cout << " Enter your birthday : ";
+			cout << " --> Enter your birthday  : ";
 			getline(cin, birthday);
-			cout << " Create serial number : ";
+			cout << " --> Create serial number : ";
 			getline(cin, serial_number);
 		}
 
 		void Show_info() {
+			cout << "\n__________________________________" << endl;
 			cout << " Name          : " << this->name << endl;
 			cout << " Surname       : " << this->surname << endl;
 			cout << " Birthday      : " << this->birthday << endl;
@@ -45,22 +46,27 @@ namespace MySpace {
 			
 			string path = "file.txt";
 
+			ofstream writeFile;
+			writeFile.open(path);
+				writeFile << this->name;
+				writeFile << this->surname;
+				writeFile << this->birthday;
+				writeFile << this->serial_number;
+
+
+
+			path = "file.txt";
 			ifstream myFile;
 			myFile.exceptions(ifstream::badbit | ifstream::failbit);  // Only for ifstream (Demo)
 			
 			try{		
 				myFile.open(path);				
-				myFile >> this->name;
-				myFile >> this->surname;
-				myFile >> this->birthday;
-				myFile >> this->serial_number;
-				myFile.close();
-
-				cout << "Successfuly " << endl;
+				cout << "\n ->>> Successfuly open and close file \n" << endl;
+				myFile.close();				
 			}
 			catch (const std::exception& error){
 				cout << error.what() << endl;
-				cout << "Error open file." << endl;
+				cout << "\n ->>> Error open file.\n" << endl;
 			}
 		}
 		~Documante() {};

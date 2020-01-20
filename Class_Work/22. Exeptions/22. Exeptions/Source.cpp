@@ -1,11 +1,8 @@
 ﻿//#include<iostream>
 //#include<string>
+//using namespace std;
 #include"MYnamespace.h"
 #include"Passport.h"
-//using namespace std;
-
-
-
 
 /* 
 Створити програму, яка демонструє, що функція зі своїм власним try–блоком
@@ -18,7 +15,6 @@ void Division(int a, int b){
 	if (b == 0) {	throw exception(" Fatal error. Division on 0. ");	}
 	cout << " Division : " << a / b << endl;
 }
-
 int main() {
 	int a, b;
 	cout << " Enter A and B : ";
@@ -39,13 +35,15 @@ int main() {
 int main(){
 
 	/*MySpace::Documante mypasport;
-
 	mypasport.Fill();
 	mypasport.Show_info();*/
 
 	passportSpace::Passport myPassport;
 
+	cout << "\n\t C R E A T E   P A S S P O R T\n\n" << endl;
 	myPassport.Fill();
+
+	cout << "\n------------- I N F O ------------" << endl;
 	myPassport.Show_info();
 	myPassport.Write_to_file();
 
