@@ -31,9 +31,9 @@ public:
 
 	Directory(string company_name = " ", string owner = " ", string phone = " ", string address = " ", string work = " ") {	}
 
-	void Fill() {			
-		cin.ignore();
+	void Fill() {		
 		cout << " Company name : ";
+		cin.ignore();
 		getline(cin, company_name);
 		cout << " Owner        : ";
 		getline(cin, owner);
@@ -45,11 +45,11 @@ public:
 		getline(cin, work);		
 	}
 	void Show_directory() {		
-		cout << " Company name : " << company_name << endl;
-		cout << " Owner        : " << owner << endl;
-		cout << " Phone        : " << phone << endl;
-		cout << " Address      : " << address << endl;
-		cout << " Work         : " << work << endl;		
+		cout << " Company name : " << this->company_name << endl;
+		cout << " Owner        : " << this->owner << endl;
+		cout << " Phone        : " << this->phone << endl;
+		cout << " Address      : " << this->address << endl;
+		cout << " Work         : " << this->work << endl;		
 	}
 
 	void Copy(Directory &other){
@@ -82,15 +82,16 @@ void Create_object(Directory my_directory[], int size) {
 
 void Search_for_name(Directory my_directory[], int size) {
 	bool exit = false;
-	string name;
-	cin.ignore();
-	cout << "Enter company name: ";
-	getline(cin, name);
+	string name;	
+	cout << "\n Enter company name: ";
+	/*cin.ignore();
+	getline(cin, name);*/
+	cin >> name;
 	for (int i = 0; i < size; i++) {
-		if (name == my_directory[i].Getname()) {
-			exit = true;
+		if (my_directory[i].Getname() == name  ) {
 			my_directory[i].Show_directory();
-			break;
+			exit = true;
+			//break;
 		}
 	}
 	if (!exit) cout << "No result" << endl;
@@ -98,47 +99,50 @@ void Search_for_name(Directory my_directory[], int size) {
 
 void Search_for_owner(Directory my_directory[], int size) {
 	bool exit = false;
-	string owner;
-	cin.ignore();
-	cout << "Enter company name: ";
-	getline(cin, owner);
+	string owner;	
+	cout << "\n Enter company owner: ";
+	/*cin.ignore();
+	getline(cin, name);*/
+	cin >> owner;
 	for (int i = 0; i < size; i++) {
-		if (owner == my_directory[i].Getowner()) {
-			exit = true;
+		if (owner == my_directory[i].Getowner()) {			
 			my_directory[i].Show_directory();
-			break;
+			exit = true;
+			//break;
 		}
 	}
-	if (!exit) cout << "No result" << endl;
+	if (!exit) cout << " No result" << endl;
 }
 
 void Search_for_phone(Directory my_directory[], int size) {
 	bool exit = false;
-	string phone;
-	cin.ignore();
-	cout << "Enter company name: ";
-	getline(cin, phone);
+	string phone;	
+	cout << "\n Enter company phone: ";
+	/*cin.ignore();
+	getline(cin, name);*/
+	cin >> phone;
 	for (int i = 0; i < size; i++) {
-		if (phone == my_directory[i].Getphone()) {
-			exit = true;
+		if (phone == my_directory[i].Getphone()) {			
 			my_directory[i].Show_directory();
-			break;
+			exit = true;
+			//break;
 		}
 	}
-	if (!exit) cout << "No result" << endl;
+	if (!exit) cout << " No result" << endl;
 }
 
 void Search_for_work(Directory my_directory[], int size) {
 	bool exit = false;
-	string work;
-	cin.ignore();
-	cout << "Enter company name: ";
-	getline(cin, work);
+	string work;	
+	cout << "\n Enter company word: ";
+	/*cin.ignore();
+	getline(cin, name);*/
+	cin >> work;
 	for (int i = 0; i < size; i++) {
-		if (work == my_directory[i].Getwork()) {
-			exit = true;
+		if (work == my_directory[i].Getwork()) {			
 			my_directory[i].Show_directory();
-			break;
+			exit = true;
+			//break;
 		}
 	}
 	if (!exit) cout << "No result" << endl;
@@ -178,18 +182,18 @@ int main()
 
 	Create_object(my_directory, size);
 
-	cout << " Add new : " << endl;
-	Create_new(my_directory, size);
+	/*cout << " Add new : " << endl;
+	Create_new(my_directory, size);*/
 
 	Write_to_file(my_directory, size);
 
-	cout << "Search_for_name  : " << endl;
+	cout << "\n --> Search_for_name  : " << endl;
 	Search_for_name(my_directory, size);
-	cout << "Search_for_owner : " << endl;
+	cout << "\n --> Search_for_owner : " << endl;
 	Search_for_owner(my_directory, size);
-	cout << "Search_for_phone : " << endl;
+	cout << "\n --> Search_for_phone : " << endl;
 	Search_for_phone(my_directory, size);
-	cout << "Search_for_work  : " << endl;
+	cout << "\n --> Search_for_work  : " << endl;
 	Search_for_work(my_directory, size);
 
 	system("pause");
