@@ -31,100 +31,166 @@ public:
 
 	Directory(string company_name = " ", string owner = " ", string phone = " ", string address = " ", string work = " ") {	}
 
-	void Fill() {
-		
-		for (int i = 0; i < 1; i++) {
-			cout << " Company name : ";
-			cin >> company_name;
-			cout << " Owner        : ";
-			cin >> owner;
-			cout << " Phone        : ";
-			cin >> phone;
-			cout << " Address      : ";
-			cin >> address;
-			cout << " Work         : ";
-			cin >> work;
-		}
+	void Fill() {			
+		cin.ignore();
+		cout << " Company name : ";
+		getline(cin, company_name);
+		cout << " Owner        : ";
+		getline(cin, owner);
+		cout << " Phone        : ";
+		getline(cin, phone);
+		cout << " Address      : ";
+		getline(cin, address);
+		cout << " Work         : ";
+		getline(cin, work);		
 	}
-	void Show_directory() {
+	void Show_directory() {		
+		cout << " Company name : " << company_name << endl;
+		cout << " Owner        : " << owner << endl;
+		cout << " Phone        : " << phone << endl;
+		cout << " Address      : " << address << endl;
+		cout << " Work         : " << work << endl;		
+	}
 
-		for (int i = 0; i < 1; i++) {
-			cout << " Company name : " << company_name << endl;
-			cout << " Owner        : " << owner << endl;
-			cout << " Phone        : " << phone << endl;
-			cout << " Address      : " << address << endl;
-			cout << " Work         : " << work << endl;
-		}
+	void Copy(Directory &other){
+		this->company_name = other.company_name;
+		this->owner = other.owner;
+		this->phone = other.phone;
+		this->address = other.address;
+		this->work = other.work;
 	}
+	string Getname()  { return this->company_name; }
+	string Getowner() { return this->owner; }
+	string Getphone() { return this->phone; }
+	string Getwork()  { return this->work; }
 
 };
 
-void Create_object() {
-	int size;
-
-	cout << " Enter size directory : ";
-	cin >> size;
-
-	Directory *my_directory = new Directory[size];
-
-	//Directory my_directory[size];
+void Create_object(Directory my_directory[], int size) {	
 
 	for (int i = 0; i < size; i++) {
 		my_directory[i].Fill();
 	}
 	cout << "\n\n ______________________________________________________________" << endl;
+	
 	cout << "\t ================ DIRECTORY ================\n" << endl;
 	for (int i = 0; i < size; i++) {
 		cout << " # " << i + 1 << endl;
 		my_directory[i].Show_directory();
 	}
-	
+}
 
-	ofstream _fp("test.txt", ios::binary);
-	_fp << size;
-	_fp.write(reinterpret_cast<char*>(&my_directory), sizeof(Directory)*size);
+void Search_for_name(Directory my_directory[], int size) {
+	bool exit = false;
+	string name;
+	cin.ignore();
+	cout << "Enter company name: ";
+	getline(cin, name);
+	for (int i = 0; i < size; i++) {
+		if (name == my_directory[i].Getname()) {
+			exit = true;
+			my_directory[i].Show_directory();
+			break;
+		}
+	}
+	if (!exit) cout << "No result" << endl;
+}
+
+void Search_for_owner(Directory my_directory[], int size) {
+	bool exit = false;
+	string owner;
+	cin.ignore();
+	cout << "Enter company name: ";
+	getline(cin, owner);
+	for (int i = 0; i < size; i++) {
+		if (owner == my_directory[i].Getowner()) {
+			exit = true;
+			my_directory[i].Show_directory();
+			break;
+		}
+	}
+	if (!exit) cout << "No result" << endl;
+}
+
+void Search_for_phone(Directory my_directory[], int size) {
+	bool exit = false;
+	string phone;
+	cin.ignore();
+	cout << "Enter company name: ";
+	getline(cin, phone);
+	for (int i = 0; i < size; i++) {
+		if (phone == my_directory[i].Getphone()) {
+			exit = true;
+			my_directory[i].Show_directory();
+			break;
+		}
+	}
+	if (!exit) cout << "No result" << endl;
+}
+
+void Search_for_work(Directory my_directory[], int size) {
+	bool exit = false;
+	string work;
+	cin.ignore();
+	cout << "Enter company name: ";
+	getline(cin, work);
+	for (int i = 0; i < size; i++) {
+		if (work == my_directory[i].Getwork()) {
+			exit = true;
+			my_directory[i].Show_directory();
+			break;
+		}
+	}
+	if (!exit) cout << "No result" << endl;
+}
+
+void Create_new(Directory *&my_directory, int &size){
+	Directory *new_directory = new Directory[size+1];
+	for (int i = 0; i < size; i++) {
+		new_directory[i].Copy(my_directory[i]);
+	}
+	new_directory[size].Fill();
 	delete[] my_directory;
-	_fp.close();
+	my_directory = new_directory;
+	size++;
+}
 
-	Directory * final;
-	    final = new Directory[size];
+void Write_to_file(Directory my_directory[], int size) {
 	
-	    ifstream is("test.txt", ios::binary);
-	    is.read(reinterpret_cast<char *>(final), sizeof(Directory) * size);
-     is.close();
-	
-	 final[0].Show_directory();
+	string path = "text.txt";
+	ofstream writeFile;
 
-}
+	writeFile.open(path, ios::binary);
 
-void Search_for_name() {
-
-
-}
-
-void Search_for_owner() {
-
-
-}
-
-void Search_for_phone() {
-
-
-}
-void Search_for_work() {
-
-
-}
-
-void Write_to_file() {
-
-	
+	writeFile << size << endl;
+	for (int i = 0; i < size; i++) {
+		writeFile.write((char*)&my_directory[i], sizeof(Directory));
+	}
+	writeFile.close();	
 }
 
 int main()
 {
-	Create_object();
+	int size;
+	cout << " Enter size directory : ";
+	cin >> size;
+	Directory *my_directory = new Directory[size];
 
+	Create_object(my_directory, size);
+
+	cout << " Add new : " << endl;
+	Create_new(my_directory, size);
+
+	Write_to_file(my_directory, size);
+
+	cout << "Search_for_name  : " << endl;
+	Search_for_name(my_directory, size);
+	cout << "Search_for_owner : " << endl;
+	Search_for_owner(my_directory, size);
+	cout << "Search_for_phone : " << endl;
+	Search_for_phone(my_directory, size);
+	cout << "Search_for_work  : " << endl;
+	Search_for_work(my_directory, size);
 
 	system("pause");
 	return 0;
