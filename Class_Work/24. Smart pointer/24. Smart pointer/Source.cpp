@@ -10,47 +10,38 @@ using namespace std;
 Наприклад, 255.255.255.0 - вірна, 255.255.0.256, 192.0.157 – невірні.
 */
 
-class IP {
-
-	char arr[4];
-public:
-	void Fill() {
-		
-		for (int i = 0; i < 4; i++) {
-			cin >> arr[i];
-
-			if (arr[i] == 46) {
-				this->arr[4] = arr[i];
-				continue;
-			}
-		}
-	}
-
-	void Check() {
-
-		if (arr[0] != 46 && arr[4] == 46) {
-			cout << "GOOD" << endl;
-		}
-
-		
-	}
-
-};
-
 int main() {
 
-	IP *ip = new IP[4];
+	string ip;
+	string cod;
+	char buffer[4];
+	int j = 0;
+	getline(cin, ip);
 
-	for (int i = 0; i < 4; i++){
-		ip[i].Fill();
+	for (int i = 0;i < ip.length(); i++) {		
+
+
+		if (ip[i] == 46) {
+			cout << "krapka" << endl;
+			buffer[j] = '\0';
+			j = 0;
+		}
+		else {
+			buffer[j] = ip[i];
+			j++;			
+		}
+		
+		cout << "-------------cod   " << cod << endl;
+
+		if (atoi(cod.c_str()) < 255) {
+			cout << "\nGOOD" << endl;
+		}
 	}
 
-	for (int i = 0; i < 4; i++) {
-		ip[i].Check();
-	}
 
-	system("pause");
+	system ("pause");
 	return 0;
 }
+
 
 
