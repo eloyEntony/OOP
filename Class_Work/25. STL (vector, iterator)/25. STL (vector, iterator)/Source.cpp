@@ -1,6 +1,8 @@
 ﻿#include<iostream>
 #include<string>
+#include<algorithm>
 #include<vector>
+#include<conio.h>
 using namespace std;
 
 /*int main(){
@@ -76,14 +78,14 @@ using namespace std;
 
 
 /*
-Описати клас Студент(ім’я, курс, оцінка у 100-бальній системі). 
-Перевизначити для класу оператор виводу у потік.
-Визначити функцію заповнення вектору(деку) студентів довільними даними
-Визначити функцію виводу вмісту вектору(деку).
-Впорядкувати вектор(дек) за іменами студентів по зростанню.
-Відсортувати вектор(дек) за прізвищами студентів
-Знайти кількість студентів, що добре навчаються(бал &gt;=74)
-Cкопіювати студентів, що добре навчаються у інший контейнер(вектор, дек чи список)
+👌 Описати клас Студент(ім’я, курс, оцінка у 100-бальній системі).
+👌 Перевизначити для класу оператор виводу у потік.
+👌 Визначити функцію заповнення вектору(деку) студентів довільними даними
+👌 Визначити функцію виводу вмісту вектору(деку).
+👌 Впорядкувати вектор(дек) за іменами студентів по зростанню.
+👌 Відсортувати вектор(дек) за прізвищами студентів.
+👌 Знайти кількість студентів, що добре навчаються(бал >=74)
+👌 Cкопіювати студентів, що добре навчаються у інший контейнер(вектор, дек чи список)
 Встановити у перші три елементи вектору(деку) студентів самих молодших курсів за зростанням(partial_sort_copy).
 Зберегти інформацію про студентів у текстовому файлі
 Почитати інформацію про студентів з файлу у контейнер
@@ -92,30 +94,120 @@ Cкопіювати студентів, що добре навчаються у 
 class Student {
 
 	string name;
+	string surname;
 	string course;
-	int mark;
+	int mark;	
 
 public:
 
-	Student() {};
-
-	void Fill() {
+	Student() {
+		cout << "\n-----------------------------" << endl;
 		cout << " Enter name student : ";
 		cin >> this->name;
-		//getline(cin, name);
+		cout << " Enter surname      : ";
+		cin >> this->surname;
+		cout << " Enter course       : ";
+		cin >> this->course;
+		cout << " Enter mark [0-100] : ";
+		cin >> this->mark;
+		cout << "\n-----------------------------" << endl;
+	};
 
+	void Show() {
+		cout << "\n Name    : " << this->name << endl;
+		cout << " Surname : " << this->surname << endl;
+		cout << " Course  : " << this->course << endl;
+		cout << " Mark    : " << this->mark << endl;
 	}
 
+	friend ostream &operator<<(ostream &stream, Student obj);	
+	
+	string Getname() {	return this->name;	}
+	string Getsuname(){	return this->surname;	}
+	int Getmark() { return this->mark; }
+	string Getcourse() { return this->course; }
+	//bool rh(const Student &rhs) const { return name < rhs.name; }
 };
+
+ostream &operator<<(ostream &stream, Student obj) {
+	stream << obj.name << " | ";
+	stream << obj.surname << " | ";
+	stream << obj.course << " | ";
+	stream << obj.mark << endl;
+	return stream;           // Повертає посилання на параметр stream
+}
+
+bool sort_by_name(Student &obj, Student &other) {
+	return obj.Getname() < other.Getname();
+}
+
+bool sort_by_surname(Student &obj, Student &other) {
+	return obj.Getsuname() < other.Getsuname();
+}
+
+bool sort_by_course(Student &obj, Student &other) {
+	return obj.Getcourse() < other.Getcourse();
+}
+
 
 int main()
 {
+	int count_best=0;
+	int count;
 	vector<Student> group;
+	vector<Student> best_student;
+	
+	
+	cout << " Enter Student count : ";
+	cin >> count;
 
-	group.push_back(Student());
+	for (int i = 0; i < count; i++) {
+		group.push_back(Student());
+	}
+	for (int i = 0; i < count; i++) {
+		cout << group[i];
+	}
 
 	
+	cout << "\n-------------------\n Sort by name : \n-------------------" << endl;
+	sort(group.begin(), group.end(), sort_by_name);
+	for (int i = 0; i < count; i++) {
+		cout << group[i].Getname() << endl;
+	}
 
+	cout << "\n-------------------\n Sort by surname : \n-------------------" << endl;
+	sort(group.begin(), group.end(), sort_by_surname);
+	for (int i = 0; i < count; i++) {
+		cout << group[i].Getsuname() << endl;
+	}
+
+
+	cout << "\n-------------------\n BEST STUDENT : \n-------------------" << endl;
+	for (int i = 0; i < count; i++) {
+		if (group[i].Getmark() >= 74){
+			count_best++;
+			//cout << group[i];
+			best_student.push_back(group[i]);
+		}
+		else cout << " No" << endl;
+	}
+	for (int i = 0; i < count_best; i++) {
+		cout << best_student[i];
+	}
+	
+
+	vector<Student> course;
+	cout << "\n-------------------\n YANG COURSE : \n-------------------" << endl;
+	
+	partial_sort_copy(group.begin(), group.end(), course.begin(), course.begin(), sort_by_course);
+	
+	for (int i = 0; i < count; i++) {
+		cout << course[i];
+	}
+	
+	
+	
+	
 
 	system("pause");
 	return 0;            
