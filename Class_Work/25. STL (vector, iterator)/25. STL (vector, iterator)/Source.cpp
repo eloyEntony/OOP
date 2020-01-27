@@ -2,7 +2,7 @@
 #include<string>
 #include<algorithm>
 #include<vector>
-#include<conio.h>
+#include<fstream>
 using namespace std;
 
 /*int main(){
@@ -87,8 +87,8 @@ using namespace std;
 👌 Знайти кількість студентів, що добре навчаються(бал >=74)
 👌 Cкопіювати студентів, що добре навчаються у інший контейнер(вектор, дек чи список)
 Встановити у перші три елементи вектору(деку) студентів самих молодших курсів за зростанням(partial_sort_copy).
-Зберегти інформацію про студентів у текстовому файлі
-Почитати інформацію про студентів з файлу у контейнер
+👌 Зберегти інформацію про студентів у текстовому файлі
+👌 Почитати інформацію про студентів з файлу у контейнер
 */
 
 class Student {
@@ -100,7 +100,9 @@ class Student {
 
 public:
 
-	Student() {
+	Student() {};
+
+	Student(int count) {
 		cout << "\n-----------------------------" << endl;
 		cout << " Enter name student : ";
 		cin >> this->name;
@@ -111,22 +113,28 @@ public:
 		cout << " Enter mark [0-100] : ";
 		cin >> this->mark;
 		cout << "\n-----------------------------" << endl;
-	};
+	};	
 
 	void Show() {
 		cout << "\n Name    : " << this->name << endl;
 		cout << " Surname : " << this->surname << endl;
 		cout << " Course  : " << this->course << endl;
 		cout << " Mark    : " << this->mark << endl;
-	}
+	}	
 
-	friend ostream &operator<<(ostream &stream, Student obj);	
-	
-	string Getname() {	return this->name;	}
-	string Getsuname(){	return this->surname;	}
-	int Getmark() { return this->mark; }
-	string Getcourse() { return this->course; }
-	//bool rh(const Student &rhs) const { return name < rhs.name; }
+	string Getname()				{	return this->name;	}
+	string Getsuname()				{	return this->surname;	}
+	int Getmark()					{ return this->mark; }
+	string Getcourse()				{ return this->course; }
+
+	void Set_name(string name)		{	this->name = name;	}
+	void Set_suname(string suname)	{	this->surname = suname;	}
+	void Set_course(string course)	{	this->course = course;	}
+	void Set_mark(int mark)			{	this->mark = mark;	}		
+
+	friend void Write_to_file(vector<Student> group, int size);
+	friend void Read_from_file();
+	friend ostream &operator<<(ostream &stream, Student obj);
 };
 
 ostream &operator<<(ostream &stream, Student obj) {
@@ -149,54 +157,106 @@ bool sort_by_course(Student &obj, Student &other) {
 	return obj.Getcourse() < other.Getcourse();
 }
 
+void Write_to_file(vector<Student> group, int size) {
+
+	ofstream writeFile;
+	string path = "data.txt";
+	writeFile.open(path);
+
+	if (!writeFile.is_open()) {
+		cout << "Can't open file" << endl;
+	}
+	else {
+		writeFile << group.size() << endl;
+		for (int i = 0; i < group.size(); i++) {
+			writeFile << group[i].name << endl;
+			writeFile << group[i].surname << endl;
+			writeFile << group[i].course << endl;
+			writeFile << group[i].mark << endl;
+		}
+	}
+	writeFile.close();
+}
+
+void Show(vector<Student> student, int size) {
+	for (int i = 0; i < size; i++) {
+		cout << student[i];
+	}
+}
+
+void Read_from_file() {
+
+	int size;		
+	vector<Student> MyVector;
+	ifstream readFile("data.txt");
+	readFile >> size;
+	Student *my_srudent = new Student[size];
+	while (!readFile.eof()){		
+		for (int i = 0; i < size; i++) {
+			readFile >> my_srudent[i].name;
+			readFile >> my_srudent[i].surname;
+			readFile >> my_srudent[i].course;
+			readFile >> my_srudent[i].mark;
+
+			MyVector.push_back(my_srudent[i]);
+		}		
+	}
+	readFile.close();
+	delete[] my_srudent;
+	Show(MyVector, size);	
+}
+
+void Sort_by_name(vector<Student> student, int size) {
+	sort(student.begin(), student.end(), sort_by_name);
+	Show(student, size);	
+}
+
+void Sort_by_surname(vector<Student> student, int size) {
+	sort(student.begin(), student.end(), sort_by_surname);	
+	Show(student, size);
+}
+
+void Best_student(vector<Student> student, int size) {
+	
+	int count_best = 0;
+	vector<Student> best_student;
+
+	for (int i = 0; i < size; i++) {
+		if (student[i].Getmark() >= 74) {
+			count_best++;
+			//cout << group[i];
+			best_student.push_back(student[i]);
+		}		
+	}
+	Show(best_student, count_best);
+}
 
 int main()
 {
-	int count_best=0;
-	int count;
+	int count;	
 	vector<Student> group;
-	vector<Student> best_student;
 	
-	
-	cout << " Enter Student count : ";
+	cout<< "\n--------------------[   S T U D E T N    ]------------------- " << endl;
+	cout << "\n\t>>>> Enter Student count : ";
 	cin >> count;
-
 	for (int i = 0; i < count; i++) {
-		group.push_back(Student());
-	}
-	for (int i = 0; i < count; i++) {
-		cout << group[i];
+		group.push_back(Student(count));
 	}
 
+	cout << "\n-------------------[     ALL STUDENT     ]-------------------" << endl;
+	Show(group, count);
 	
-	cout << "\n-------------------\n Sort by name : \n-------------------" << endl;
-	sort(group.begin(), group.end(), sort_by_name);
-	for (int i = 0; i < count; i++) {
-		cout << group[i].Getname() << endl;
-	}
+	cout << "\n-------------------[     SORT BY NAME    ]-------------------" << endl;
+	Sort_by_name(group, count);	
+	
+	cout << "\n-------------------[   SORT BY SURNAME   ]-------------------" << endl;
+	Sort_by_surname(group, count); 
 
-	cout << "\n-------------------\n Sort by surname : \n-------------------" << endl;
-	sort(group.begin(), group.end(), sort_by_surname);
-	for (int i = 0; i < count; i++) {
-		cout << group[i].Getsuname() << endl;
-	}
-
-
-	cout << "\n-------------------\n BEST STUDENT : \n-------------------" << endl;
-	for (int i = 0; i < count; i++) {
-		if (group[i].Getmark() >= 74){
-			count_best++;
-			//cout << group[i];
-			best_student.push_back(group[i]);
-		}
-		else cout << " No" << endl;
-	}
-	for (int i = 0; i < count_best; i++) {
-		cout << best_student[i];
-	}
+	cout << "\n-------------------[     BEST STUDENT    ]-------------------" << endl;	
+	Best_student(group, count);
 	
 
-	vector<Student> course;
+	/*vector<Student> course;
 	cout << "\n-------------------\n YANG COURSE : \n-------------------" << endl;
 	
 	partial_sort_copy(group.begin(), group.end(), course.begin(), course.begin(), sort_by_course);
@@ -204,10 +264,13 @@ int main()
 	for (int i = 0; i < count; i++) {
 		cout << course[i];
 	}
+	*/
 	
-	
-	
-	
+	cout << "\n-------------------[    WRITE TO FILE    ]-------------------" << endl;
+	Write_to_file(group, count);
+
+	cout << "\n-------------------[    READ FROM FILE   ]-------------------" << endl;
+	Read_from_file();
 
 	system("pause");
 	return 0;            
