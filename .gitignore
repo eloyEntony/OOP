@@ -1,6 +1,10 @@
 *.vs
 *Debug
 
+/Exam_Work/Exam/.vs
+/Exam_Work/Exam/Debug
+/Exam_Work/Exam/Exam/Debug
+
 /Class_Work/01. Class/.vs
 /Class_Work/01. Class/Debug
 /Class_Work/02. getters, setter, constructor/.vs
