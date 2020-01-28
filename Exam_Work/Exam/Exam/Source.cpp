@@ -35,7 +35,7 @@ class Apartments {
 
 public:
 
-	Apartments() {	
+	Apartments() {
 		Exchange_request();
 	};
 
@@ -55,15 +55,7 @@ public:
 
 	}
 
-	void Serch(int room, int over, float s) {
 
-		if ((this->rooms = room) && (this->over = over) && ( this->s * 0.1 > s * 0.1 || this->s * 0.1 < s * 0.1)) {
-
-			Show();
-		}
-
-
-	}
 
 	void Show() {
 		cout << "\n---------------------------------" << endl;
@@ -76,7 +68,36 @@ public:
 
 	~Apartments() {};
 
+	int Get_room() {
+		return this->rooms;
+	}
+
+	int Get_over() {
+		return this->over;
+	}
+
+	float Get_s() {
+		return this->s;
+	}
+
+	
 };
+
+
+void Serch(vector<Apartments> first , vector<Apartments> second) {	
+
+	for (int i = 0; i < first.size(); i++) {
+
+		float temp = first[i].Get_s()*0.10;
+
+		if ((first[i].Get_room() == second[i].Get_room()) && (first[i].Get_over() == second[i].Get_over()) && (second[i].Get_s() >= (first[i].Get_s() - temp) && second[i].Get_s() <= (first[i].Get_s() + temp))) {
+			first[i].Show();
+		}
+		else
+			cout << "NOO" << endl;
+	}
+
+}
 
 int main() {
 
@@ -86,34 +107,27 @@ int main() {
 
 	vector<Apartments> cartoteka;
 		
-	/*cartoteka.push_back(Apartments());
+	vector<Apartments>my_cartoteca;
+
+
+	cout << "\n---------------- CREATE -----------------" << endl;
+
+	cartoteka.push_back(Apartments());
 	
 	cout << "\n---------------- SEARCH -----------------" << endl;
 
-	cout << " Enter search room : ";
+	my_cartoteca.push_back(Apartments());
+
+	/*cout << " Enter search room : ";
 	cin >> room;
 	cout << " Enter search over : ";
 	cin >> over;
 	cout << " Enter search S : ";
-	cin >> s;
-
-
+	cin >> s;*/
+	
 	for (int i = 0; i < cartoteka.size(); i++) {
 
-		cartoteka[i].Serch(room, over, s);
-	}*/
-
-
-	float a ;
-	float b ;
-
-	cin >> a >> b;
-
-	float f = a * 0.1;
-	float g = b * 0.1;
-
-	if (f==g) {
-		cout << "Good" << endl;
+		Serch(cartoteka, my_cartoteca);
 	}
 
 
