@@ -102,7 +102,7 @@ public:
 
 };
 
-void ShowData(vector <Flat> finding_flat, vector <Flat> exchanging_flat ) { //показ 
+void ShowData(vector <Flat> &finding_flat, vector <Flat> &exchanging_flat ) { //показ 
 	int i = 0;
 	while (i < exchanging_flat.size()){
 		cout << "\n Data N" << i + 1 << endl;
@@ -115,7 +115,7 @@ void ShowData(vector <Flat> finding_flat, vector <Flat> exchanging_flat ) { //п
 	}
 }
 
-void AddFlat(vector <Flat> finding_flat, vector <Flat> exchanging_flat) {
+void AddFlat(vector <Flat> &finding_flat, vector <Flat> &exchanging_flat) {
 
 	unsigned short rooms_count;
 	unsigned short flat_square;
@@ -207,7 +207,7 @@ void AddFlat(vector <Flat> finding_flat, vector <Flat> exchanging_flat) {
 	}
 }
 
-void FindExchangeFlat(vector <Flat> finding_flat, vector <Flat> exchanging_flat) {
+void FindExchangeFlat(vector <Flat> &finding_flat, vector <Flat> &exchanging_flat) {
 
 	int i = 0;
 	bool check = false;
@@ -435,7 +435,7 @@ bool Sort_price(Flat &obj, Flat &other) {
 	return obj.Get_price() < other.Get_price();
 }
 
-void Sort_by_price(vector <Flat> finding_flat, vector <Flat> exchanging_flat) {// сортування по ціні
+void Sort_by_price(vector <Flat> &finding_flat, vector <Flat> &exchanging_flat) {// сортування по ціні
 
 	vector<Flat> all_cartoteka;
 	for (int i = 0; i < finding_flat.size(); i++) { //створюю загальну картеку
