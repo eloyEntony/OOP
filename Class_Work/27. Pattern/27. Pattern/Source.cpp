@@ -44,16 +44,16 @@ int main() {
 	Singelton() = default;
 	~Singelton() = default;
 
-	Singelton(const Singelton&) = delete; //відміна створення , констуктор копій
-	Singelton& operator =(const Singelton&) = delete;//відміна створення
-	void* operator new(size_t) = delete;//відміна створення
-	void* operator new[](size_t) = delete;//відміна створення
-	void operator delete(void*) = delete;//відміна створення
-	void operator delete[](void*) = delete;//відміна створення
+	Singelton(const Singelton&) = delete; //Р·Р°Р±РѕСЂРѕРЅР° СЃС‚РІРѕСЂРµРЅРЅСЏ, РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕСЂС–Р№
+	Singelton& operator =(const Singelton&) = delete;//Р·Р°Р±РѕСЂРѕРЅР° СЃС‚РІРѕСЂРµРЅРЅСЏ
+	void* operator new(size_t) = delete;//Р·Р°Р±РѕСЂРѕРЅР° СЃС‚РІРѕСЂРµРЅРЅСЏ
+	void* operator new[](size_t) = delete;//Р·Р°Р±РѕСЂРѕРЅР° СЃС‚РІРѕСЂРµРЅРЅСЏ
+	void operator delete(void*) = delete;//Р·Р°Р±РѕСЂРѕРЅР° СЃС‚РІРѕСЂРµРЅРЅСЏ
+	void operator delete[](void*) = delete;//Р·Р°Р±РѕСЂРѕРЅР° СЃС‚РІРѕСЂРµРЅРЅСЏ
 
 public:
 	static Singelton& getInst() {
-		static Singelton obj; //створення обєкта класу
+		static Singelton obj; //СЃС‚РІРѕСЂРµРЅРЅСЏ РѕР±С”РєС‚Сѓ РєР»Р°СЃСѓ
 		return obj;
 	}
 };
@@ -79,9 +79,9 @@ int main() {
 }*/
 
 
-//1. Написати клас Logger в якому можна залогінитись лише один раз. (Singleton)
-//у випадку якщо екземпляр класу вже створений, повертати відповідне повідомлення
-
+//1. РќР°РїРёСЃР°С‚Рё РєР»Р°СЃ Logger РІ СЏРєРѕРјСѓ РјРѕР¶РЅР° Р·Р°Р»РѕРіС–РЅРёС‚РёСЃСЊ Р»РёС€Рµ РѕРґРёРЅ СЂР°Р·. (Singleton) 
+//Сѓ РІРёРїР°РґРєСѓ СЏРєС‰Рѕ РµРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСѓ РІР¶Рµ СЃС‚РІРѕСЂРµРЅРёР№, РїРѕРІРµСЂС‚Р°С‚Рё РІС–РґРїРѕРІС–РґРЅРµ РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ
+// Singelton Pattern
 
 
 class Logger {
