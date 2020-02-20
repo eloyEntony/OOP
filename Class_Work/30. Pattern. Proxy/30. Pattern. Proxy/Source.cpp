@@ -113,12 +113,12 @@ public:
 	};
 
 	void Show_mark() {
-		cout << " MARK : " << mark << endl;
+		cout << " MARK    : " << mark <<"\n"<< endl;
 	}
 
 	void Show_info() {
-		cout << name << endl;
-		cout << surname << endl;		
+		cout << "\n NAME    : " <<name << endl;
+		cout << " SURNAME : "<<surname << endl;		
 	}
 
 	int Get_mark() {
@@ -135,16 +135,14 @@ public:
 
 class New_student : public IStudent , public Student{
 public:
-
 	void Show_mark() {
-		if (Get_mark() <= 16) cout << " MARK : A " << endl;
-		else if (Get_mark() > 16 && Get_mark() <= 32) cout << " MARK : B " << endl;
-		else if (Get_mark() > 32 && Get_mark() <= 48) cout << " MARK : C " << endl;
-		else if (Get_mark() > 48 && Get_mark() <= 64) cout << " MARK : D " << endl;
-		else if (Get_mark() > 64 && Get_mark() <= 80) cout << " MARK : E " << endl;
-		else if (Get_mark() > 80 && Get_mark() <= 100) cout << " MARK : F " << endl;
+		if (Get_mark() <= 16) cout << " MARK    : A " << endl;
+		else if (Get_mark() > 16 && Get_mark() <= 32) cout << " MARK    : B " << endl;
+		else if (Get_mark() > 32 && Get_mark() <= 48) cout << " MARK    : C " << endl;
+		else if (Get_mark() > 48 && Get_mark() <= 64) cout << " MARK    : D " << endl;
+		else if (Get_mark() > 64 && Get_mark() <= 80) cout << " MARK    : E " << endl;
+		else if (Get_mark() > 80 && Get_mark() <= 100) cout << " MARK   : F " << endl;
 	}
-
 };
 
 void stud() {
