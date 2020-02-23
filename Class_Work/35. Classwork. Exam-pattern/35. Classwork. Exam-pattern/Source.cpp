@@ -114,14 +114,13 @@ public:
 	void Create() {		this->builder->Create_task();	}
 
 	void Show() {
-		cout << "SIZE : " << my_list.size() << endl;
-
+		cout << "\tALL TASK : " << my_list.size()<<"\n\n"<< endl;
 		for (int i = 0; i < my_list.size(); i++) {
-			cout << "# " << my_list[i].number << endl;
-			cout << "TASK      : "<< my_list[i].task << endl;
-			cout << "DETH LINE : " << my_list[i].deth_line << endl;
-			cout << "PRIORITY  : " << my_list[i].priority << endl;
-			cout << "MARK      : " << my_list[i].mark << endl;
+			cout << " # " << my_list[i].number << endl;
+			cout << " TASK      : "<< my_list[i].task << endl;
+			cout << " DETH LINE : " << my_list[i].deth_line << endl;
+			cout << " PRIORITY  : " << my_list[i].priority << endl;
+			cout << " MARK      : " << my_list[i].mark << endl;
 			cout << "---------------------------" << endl;
 		}
 	}
@@ -143,9 +142,10 @@ public:
 
 	void Serch() {
 		int choise;
+		bool good = false;
 		string tmp;
-		cout << "\n\t====SERCH====\n [1] By date.\n [2] By teg.\n [3] By priority. " << endl;
-		cout << "\n Enter your choise : ";
+		cout << "\n\t====SERCH====\n\t [1] By date.\n\t [2] By teg.\n\t [3] By priority. " << endl;
+		cout << "\n\t Enter your choise : ";
 		cin >> choise;
 
 		switch (choise)
@@ -154,26 +154,38 @@ public:
 			cout << "\n Enter date /00.00.00/ : ";
 			cin >> tmp;
 			for (int i = 0; i < my_list.size(); i++) {
-				if (tmp == my_list[i].deth_line) {					
-					cout << "\n    TASK      : " << my_list[i].task << endl;		
+				if (tmp == my_list[i].deth_line) {		
+					cout << "---------------------------" << endl;
+					cout << "\n    #         : " << my_list[i].number << endl;
+					cout << "    TASK      : " << my_list[i].task << endl;		
 					cout << "->> DETH LINE : " << my_list[i].deth_line << endl;
 					cout << "    PRIORITY  : " << my_list[i].priority << endl;
 					cout << "    MARK      : " << my_list[i].mark << endl;
 					cout << "---------------------------" << endl;
+					good = true;
 				}
-			}			
+			}
+			if (good == false) {
+				cout << "\n\t Tasks not detected !" << endl;
+			}
 			break;
 		case 2:
 			cout << "\n Enter teg /#teg/ : ";
 			cin >> tmp;
 			for (int i = 0; i < my_list.size(); i++) {
 				if (tmp == my_list[i].mark) {
-					cout << "\n    DETH LINE : " << my_list[i].deth_line << endl;
+					cout << "---------------------------" << endl;
+					cout << "\n    #         : " << my_list[i].number << endl;
 					cout << "    TASK      : " << my_list[i].task << endl;
+					cout << "    DETH LINE : " << my_list[i].deth_line << endl;					
 					cout << "    PRIORITY  : " << my_list[i].priority << endl;
 					cout << "->> MARK      : " << my_list[i].mark << endl;
 					cout << "---------------------------" << endl;
+					good = true;
 				}
+			}
+			if (good == false) {
+				cout << "\n\t Tasks not detected !" << endl;
 			}
 			break;
 		case 3: 
@@ -181,16 +193,22 @@ public:
 			cin >> tmp;
 			for (int i = 0; i < my_list.size(); i++) {
 				if (tmp == my_list[i].priority) {
-					cout << "\n   DETH LINE : " << my_list[i].deth_line << endl;
+					cout << "---------------------------" << endl;
+					cout << "\n    #         : " << my_list[i].number << endl;
 					cout << "    TASK      : " << my_list[i].task << endl;
+					cout << "    DETH LINE : " << my_list[i].deth_line << endl;					
 					cout << "->> PRIORITY  : " << my_list[i].priority << endl;
 					cout << "    MARK      : " << my_list[i].mark << endl;
 					cout << "---------------------------" << endl;
+					good = true;
 				}
+			}
+			if (good == false) {
+				cout << "\n\t Tasks not detected !" << endl;
 			}
 			break;
 		default:
-			cout << " Wrong choise." << endl;
+			cout << "\n\t Wrong choise." << endl;
 			break;
 		}
 	}
@@ -199,102 +217,104 @@ public:
 		int choise;
 		int choise2;
 		string tmp;
-		cout << "\n Select a task : " << endl;
+		cout << "\n\t Select a task : \n" << endl;
 		Show();
-
-		cout << "\n Enter your choise : ";
-		cin >> choise;
-	
+		cout << "\n\n\t Enter your choise : ";
+		cin >> choise;	
 
 		for (int i = 0; i < my_list.size(); i++) {
 			if (choise == my_list[i].number) {
 
-				cout << "\n [1] Task. [2] Data. [3] Priority. [4] Mark. [5] All task.";
+				cout << "\n\t [1] Task.      [4] Mark. " << endl;
+				cout << "\t [2] Data.      [5] All task." << endl;
+				cout << "\t [3] Priority.  [0] Exit." << endl;
 				cout << "\n Enter what you want to change : ";
 				cin >> choise2;
 				switch (choise2)
 				{
-				case 1:
-					cout << " Enter new task : ";
-					cin >> tmp;
-					my_list[i].task = tmp;
+					case 1:
+						cout << "\n Enter new task : ";
+						cin.ignore();
+						getline(cin, tmp);
+						my_list[i].task = tmp;
 
-					cout << "---------------------------" << endl;
-					cout << "\n # " << my_list[i].number << endl;
-					cout << " TASK      : " << my_list[i].task << endl;
-					cout << " DETH LINE : " << my_list[i].deth_line << endl;
-					cout << " PRIORITY  : " << my_list[i].priority << endl;
-					cout << " MARK      : " << my_list[i].mark << endl;
-					cout << "---------------------------" << endl;
+						cout << "---------------------------" << endl;
+						cout << "\n # -> " << my_list[i].number << endl;
+						cout << " TASK      : " << my_list[i].task << endl;
+						cout << " DETH LINE : " << my_list[i].deth_line << endl;
+						cout << " PRIORITY  : " << my_list[i].priority << endl;
+						cout << " MARK      : " << my_list[i].mark << endl;
+						cout << "---------------------------" << endl;
+						break;
+					case 2:
+						cout << "\n Enter new deth line : ";
+						cin.ignore();
+						getline(cin, tmp);
+						my_list[i].deth_line = tmp;
 
-					break;
-				case 2:
-					cout << " Enter new deth line : ";
-					cin >> tmp;
-					my_list[i].deth_line = tmp;
+						cout << "---------------------------" << endl;
+						cout << "\n # -> " << my_list[i].number << endl;
+						cout << " TASK      : " << my_list[i].task << endl;
+						cout << " DETH LINE : " << my_list[i].deth_line << endl;
+						cout << " PRIORITY  : " << my_list[i].priority << endl;
+						cout << " MARK      : " << my_list[i].mark << endl;
+						cout << "---------------------------" << endl;
+						break;
+					case 3:
+						cout << "\n Enter new priority : ";
+						cin.ignore();
+						getline(cin, tmp);
+						my_list[i].priority = tmp;
 
-					cout << "---------------------------" << endl;
-					cout << "\n # " << my_list[i].number << endl;
-					cout << " TASK      : " << my_list[i].task << endl;
-					cout << " DETH LINE : " << my_list[i].deth_line << endl;
-					cout << " PRIORITY  : " << my_list[i].priority << endl;
-					cout << " MARK      : " << my_list[i].mark << endl;
-					cout << "---------------------------" << endl;
+						cout << "---------------------------" << endl;
+						cout << "\n # -> " << my_list[i].number << endl;
+						cout << " TASK      : " << my_list[i].task << endl;
+						cout << " DETH LINE : " << my_list[i].deth_line << endl;
+						cout << " PRIORITY  : " << my_list[i].priority << endl;
+						cout << " MARK      : " << my_list[i].mark << endl;
+						cout << "---------------------------" << endl;
+						break;
+					case 4:
+						cout << "\n Enter new mark : ";
+						cin.ignore();
+						getline(cin, tmp);
+						my_list[i].mark = tmp;
 
-					break;
-				case 3:
-					cout << " Enter new priority : ";
-					cin >> tmp;
-					my_list[i].priority = tmp;
+						cout << "---------------------------" << endl;
+						cout << "\n # -> " << my_list[i].number << endl;
+						cout << " TASK      : " << my_list[i].task << endl;
+						cout << " DETH LINE : " << my_list[i].deth_line << endl;
+						cout << " PRIORITY  : " << my_list[i].priority << endl;
+						cout << " MARK      : " << my_list[i].mark << endl;
+						cout << "---------------------------" << endl;
+						break;
+					case 5:
+						cout << "\n Enter new task : ";
+						cin.ignore();
+						getline(cin, tmp);
+						my_list[i].task = tmp;
+						cout << " Enter new deth line : ";
+						getline(cin, tmp);
+						my_list[i].deth_line = tmp;
+						cout << " Enter new priority : ";
+						getline(cin, tmp);
+						my_list[i].priority = tmp;
+						cout << " Enter new mark : ";
+						getline(cin, tmp);
+						my_list[i].mark = tmp;
 
-					cout << "---------------------------" << endl;
-					cout << "\n # " << my_list[i].number << endl;
-					cout << " TASK      : " << my_list[i].task << endl;
-					cout << " DETH LINE : " << my_list[i].deth_line << endl;
-					cout << " PRIORITY  : " << my_list[i].priority << endl;
-					cout << " MARK      : " << my_list[i].mark << endl;
-					cout << "---------------------------" << endl;
-
-					break;
-				case 4:
-					cout << " Enter new mark : ";
-					cin >> tmp;
-					my_list[i].mark = tmp;
-
-					cout << "---------------------------" << endl;
-					cout << "\n # " << my_list[i].number << endl;
-					cout << " TASK      : " << my_list[i].task << endl;
-					cout << " DETH LINE : " << my_list[i].deth_line << endl;
-					cout << " PRIORITY  : " << my_list[i].priority << endl;
-					cout << " MARK      : " << my_list[i].mark << endl;
-					cout << "---------------------------" << endl;
-
-					break;
-				case 5:
-					break;
-					cout << " Enter new task : ";
-					cin >> tmp;
-					my_list[i].task = tmp;
-					cout << " Enter new deth line : ";
-					cin >> tmp;
-					my_list[i].deth_line = tmp;
-					cout << " Enter new priority : ";
-					cin >> tmp;
-					my_list[i].priority = tmp;
-					cout << " Enter new mark : ";
-					cin >> tmp;
-					my_list[i].mark = tmp;
-
-					cout << "---------------------------" << endl;
-					cout << "\n # " << my_list[i].number << endl;
-					cout << " TASK      : " << my_list[i].task << endl;
-					cout << " DETH LINE : " << my_list[i].deth_line << endl;
-					cout << " PRIORITY  : " << my_list[i].priority << endl;
-					cout << " MARK      : " << my_list[i].mark << endl;
-					cout << "---------------------------" << endl;
-
-				default:
-					break;
+						cout << "---------------------------" << endl;
+						cout << "\n # -> " << my_list[i].number << endl;
+						cout << " TASK      : " << my_list[i].task << endl;
+						cout << " DETH LINE : " << my_list[i].deth_line << endl;
+						cout << " PRIORITY  : " << my_list[i].priority << endl;
+						cout << " MARK      : " << my_list[i].mark << endl;
+						cout << "---------------------------" << endl;
+						break;
+					case 0:
+						break;
+					default:
+						break;
 				}				
 			}			
 		}
@@ -302,9 +322,9 @@ public:
 
 	void Delete_task() {
 		int choise;
-		cout << "\n Select a task : \n\t";		
+		cout << "\n\t Select a task : \n\n";		
 		Show();
-		cout << " Enter choise : ";
+		cout << "\n\t Enter choise : ";
 		cin >> choise;
 
 		for (int i = 0; i<my_list.size(); i++) {
@@ -317,8 +337,7 @@ public:
 	void Read_from_file() {
 		Task my_task;
 		ifstream readFile;
-		char temp[255];
-			
+		char temp[255];			
 
 		readFile.open("data.txt");
 
@@ -354,51 +373,142 @@ public:
 	}
 };
 
-class Facade {
+void Choice_of_task(Directoc_task &director) {
+	int choice;
+	int number;
+	string task;
+	string priority;
+	string mark;
+	string deth_line;
+	bool exit = false;
+	Task_builder* builder = new Task_builder();
+	cout << "\t [1] Draft (only task)                [3] Task with priority   " << endl;
+	cout << "\t [2] Elementary (task and data)       [4] Full task (with mark) " << endl;
+	cout << "\t [0] Back " << endl;
+	cout << "\n\t >>> Enter : ";
+	cin >> choice;
+	
+	switch (choice){
+		case 1:
+			cout << "\n Enter new task : ";
+			cin.ignore();
+			getline(cin, task);
+			director.Set_builder(builder);
+			director.Build_draft(task);
+			director.Create();
+			break;
+		case 2:
+			cout << "\n Enter new task : ";
+			cin.ignore();
+			getline(cin, task);
+			cout << " Enter new deth line : ";
+			getline(cin, deth_line);
+			director.Set_builder(builder);
+			director.Build_elementary_task(task, deth_line);
+			director.Create();
+			break;
+		case 3:
+			cout << "\n Enter new task : ";
+			cin.ignore();
+			getline(cin, task);
+			cout << " Enter new deth line : ";
+			getline(cin, deth_line);
+			cout << " Enter new priority : ";
+			getline(cin, priority);
+			director.Set_builder(builder);
+			director.Build_priority_task(task, deth_line, priority);
+			director.Create();
+			break;
+		case 4:
+			cout << "\n Enter new task : ";
+			cin.ignore();
+			getline(cin, task);
+			cout << " Enter new deth line : ";
+			getline(cin, deth_line);
+			cout << " Enter new priority : ";
+			getline(cin, priority);
+			cout << " Enter new mark : ";
+			getline(cin, mark);
+			director.Set_builder(builder);
+			director.Build_full_task(task, deth_line, priority, mark);
+			director.Create();
+			break;
+		case 0:			
+			break;
+		default:
+			cout << " Wrong choice ! \n" << endl;
+			break;
+	}
+	delete builder;
+	
+}
 
-};
-
-void ClientCode(Directoc_task &director)
+void Menu(Directoc_task &director)
 {
+	int choise;
+	bool exit = false;
+	
 
-	/*Task_builder* builder = new Task_builder();
-	director.Set_builder(builder);
-	director.Build_draft("HELLO");
-	director.Create();
-
-	Task_builder* builder2 = new Task_builder();
-	director.Set_builder(builder2);
-	director.Build_draft("HELLO2");
-	director.Create();
-
-	Task_builder* builder3 = new Task_builder();
-	director.Set_builder(builder3);
-	director.Build_full_task("1", "2", "3", "4");
-	director.Create();*/
-
-
-	/*director.Show();
-	director.Write_to_file();
-
-	director.Serch();
-
-	director.Change_task();
-*/
-	//director.Delete_task();
-	//director.Write_to_file();
-	director.Read_from_file();
-	director.Show();
-
-	/*delete builder;
-	delete builder2;*/
+	while (!exit) {
+		cout << "\n\t____________________________________________________________\n" <<
+			"\t\t   <<<<<  T A S K    P L A N N I N G  >>>>>\n\t____________________________________________________________\n\t" << endl;
+		cout << "\n\t\t\t<<< MENU >>>\n" << endl;
+		cout << "\t [1] Add task.             [5] Change task." << endl;
+		cout << "\t [2] Show all task.        [6] Save task to file." << endl;
+		cout << "\t [3] Search task.          [7] Download tasks from file." << endl;
+		cout << "\t [4] Delete task.          [0] Exit." << endl;
+		cout << "\n\t >>> Enter : ";
+		cin >> choise;
+		cout << "\n\n";
+		switch (choise)	{
+			case 1 : 
+				Choice_of_task(director);
+				system("cls");
+				break;
+			case 2:
+				director.Show();
+				system("pause");
+				system("cls");
+				break;
+			case 3:
+				director.Serch();
+				system("pause");
+				system("cls");
+				break;
+			case 4:
+				director.Delete_task();
+				system("pause");
+				system("cls");
+				break;
+			case 5:
+				director.Change_task();
+				system("pause");
+				system("cls");
+				break;
+			case 6:
+				director.Write_to_file();
+				system("pause");
+				system("cls");
+				break;
+			case 7:
+				director.Read_from_file();
+				system("cls");
+				break;
+			case 0:
+				exit = true;
+				break;
+			default:
+				cout << " Wrong choice ! \n" << endl;
+				break;
+		}
+	}
 }
 
 int main() {
 
 	Directoc_task* director = new Directoc_task();
-	ClientCode(*director);
+	Menu(*director);
 	delete director;
-
 
 	system("pause");
 	return 0;
